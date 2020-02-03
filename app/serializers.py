@@ -5,7 +5,7 @@ from app.models import *
 class UploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadModel
-        fields = '__all__'
+        fields = ['choice']
 
 
 class ResultSerializer(serializers.ModelSerializer):

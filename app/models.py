@@ -3,7 +3,7 @@ import csv
 
 
 class UploadModel(models.Model):
-    choice = models.FileField(upload_to='uploads/')
+    choice = models.FileField(verbose_name='csv-файл', upload_to='uploads/')
 
     def __str__(self):
         return self.choice
@@ -32,7 +32,7 @@ class DealsModel(models.Model):
 class ResultModel(models.Model):
     username = models.CharField(max_length=50)
     spent_money = models.IntegerField(null=True)
-    gems = models.CharField(max_length=50)
+    gems = models.CharField(max_length=100)
 
     class Meta:
         ordering = ('-spent_money',)
