@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'jewels.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test_drf',
-        'USER': 'test_user',
+        'NAME': 'myproject',
+        'USER': 'myprojectuser',
         'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 

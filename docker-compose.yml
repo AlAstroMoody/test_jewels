@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+    db:
+        image: postgres
+        environment:
+            - POSTGRES_DB=myproject
+            - POSTGRES_USER=myprojectuser
+            - POSTGRES_PASSWORD=password 
+    web:
+        build: .
+        image: qwe
+        command: python3 manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+        links: 
+            - db
