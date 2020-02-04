@@ -1,25 +1,4 @@
-Пока запуск такой:
-docker-compose run web python3 manage.py migrate
+Запускаем командой:
+```sh
 docker-compose up
-Можно ли сделать что-то такое в docker-compose?
-Тестировать!
-
-web:
-        build: .
-        image: qwe
-        command: python3 manage.py runserver 0.0.0.0:8000
-        volumes:
-            - .:/code
-        ports:
-            - "8000:8000"
-        depends_on:
-            - migration
-            - db
-        links: 
-            - db
-migration:
-    command: python3 manage.py migrate
-    volumes:
-      - .:/code
-    depends_on:
-      - db
+```
