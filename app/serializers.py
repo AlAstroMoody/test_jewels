@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from app.models import *
+
+from jewels.app.models import UploadModel, ResultModel
 
 
 class UploadSerializer(serializers.ModelSerializer):

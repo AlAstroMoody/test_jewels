@@ -1,4 +1,5 @@
 from django.db import models
+
 import csv
 
 
@@ -16,7 +17,7 @@ class DealsModel(models.Model):
     quantity = models.IntegerField(null=True)
     date = models.CharField(max_length=50, primary_key=True)
 
-    def import_to_base(csv_name):
+    def import_to_base(self, csv_name):
         data = csv.reader(open(csv_name), delimiter=',')
         dates = []
         for element in DealsModel.objects.all():
@@ -49,10 +50,14 @@ class ResultModel(models.Model):
                         spent_money += record.total
                         if record.item not in gems_lst:
                             gems_lst.append(record.item)
-                result = ResultModel(username=element.customer, spent_money=spent_money,
+                result = ResultModel(username=element.customer,
+                                     spent_money=spent_money,
                                      gems=gems_lst)
                 result.save()
                 users.append(element.customer)
+#  ниже огромная функция для вывода "списка из названий камней, которые
+#  купили как минимум двое из списка "5 клиентов, потративших наибольшую
+#  сумму за весь период", и данный клиент является одним из этих покупателей."
 
     def give_gems():
         important_customers = ResultModel.objects.all()[:5]

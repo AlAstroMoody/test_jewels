@@ -14,11 +14,9 @@ services:
         depends_on:
             - migration
             - db
-        links: 
-            - db
     migration:
         build: .
-        command: python3 manage.py migrate --noinput
+        command: python3 manage.py migrate
         depends_on:
             - db
 

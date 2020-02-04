@@ -1,12 +1,10 @@
-from django.shortcuts import render
-
 from rest_framework import generics
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework import status
 
-from app.serializers import *
-from app.models import *
+from jewels.app.models import UploadModel, DealsModel, ResultModel
+from jewels.app.serializers import UploadSerializer, ResultSerializer
 
 
 class UploadView(generics.ListCreateAPIView):
@@ -23,17 +21,19 @@ class UploadView(generics.ListCreateAPIView):
             try:
                 DealsModel.import_to_base(csv_name)
             except:
-                return Response('Неверный формат файла', status=status.HTTP_400_BAD_REQUEST)
+                return Response('Неверный формат файла',
+                                status=status.HTTP_400_BAD_REQUEST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class ResultView(generics.ListAPIView):
     serializer_class = ResultSerializer
     queryset = ResultModel.objects.all()[:5]
 
-    def get(self, request):
+    def get(self, *args):
         queryset = self.get_queryset()
         serializer = ResultSerializer(queryset, many=True)
         ResultModel.objects.all().delete()
