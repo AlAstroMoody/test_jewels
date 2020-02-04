@@ -9,8 +9,6 @@ services:
     web:
         build: .
         command: python3 manage.py runserver 0.0.0.0:8000
-        volumes:
-            - .:/code
         ports:
             - "8000:8000"
         depends_on:
@@ -20,10 +18,7 @@ services:
             - db
     migration:
         build: .
-        command: python3 manage.py migrate
-        volumes:
-            - .:/code
+        command: python3 manage.py migrate --noinput
         depends_on:
             - db
-        links: 
-            - db
+
