@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from jewels.app.models import UploadModel, ResultModel
+from app.models import *
 
 
 class UploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadModel
-        fields = ['choice']
+        fields = ['deals']
 
 
 class ResultSerializer(serializers.ModelSerializer):

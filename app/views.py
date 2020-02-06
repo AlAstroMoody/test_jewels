@@ -3,8 +3,8 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework import status
 
-from jewels.app.models import UploadModel, DealsModel, ResultModel
-from jewels.app.serializers import UploadSerializer, ResultSerializer
+from app.models import *
+from app.serializers import *
 
 
 class UploadView(generics.ListCreateAPIView):
@@ -16,7 +16,7 @@ class UploadView(generics.ListCreateAPIView):
         serializer = UploadSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            csv_name = str(serializer.data.__getitem__('choice'))
+            csv_name = str(serializer.data.__getitem__('deals'))
             DealsModel.objects.all().delete()
             try:
                 DealsModel.import_to_base(csv_name)

@@ -4,7 +4,7 @@ import csv
 
 
 class UploadModel(models.Model):
-    choice = models.FileField(verbose_name='csv-файл', upload_to='uploads/')
+    deals = models.FileField(verbose_name='csv-файл', upload_to='uploads/')
 
     def __str__(self):
         return self.choice
@@ -17,7 +17,7 @@ class DealsModel(models.Model):
     quantity = models.IntegerField(null=True)
     date = models.CharField(max_length=50, primary_key=True)
 
-    def import_to_base(self, csv_name):
+    def import_to_base(csv_name):
         data = csv.reader(open(csv_name), delimiter=',')
         dates = []
         for element in DealsModel.objects.all():

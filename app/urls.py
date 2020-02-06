@@ -1,6 +1,7 @@
 from django.urls import path
 
-from jewels.app.views import UploadView, ResultView
+from app.views import *
+
 
 urlpatterns = [
     path('upload/', UploadView.as_view()),
