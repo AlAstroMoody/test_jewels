@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from app.models import *
+from app.models import UploadModel, ResultModel
 
 
 class UploadSerializer(serializers.ModelSerializer):
@@ -12,4 +12,4 @@ class UploadSerializer(serializers.ModelSerializer):
 class ResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResultModel
-        fields = ['username', 'spent_money', 'gems']
+        fields = ('username', 'spent_money', 'gems')

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from app.views import *
+from app.views import UploadView, ResultView
 
 
 urlpatterns = [
