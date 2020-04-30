@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
-from app.models import UploadModel, ResultModel
+from .models import UploadModel, DealModel
 
 
 class UploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadModel
-        fields = ['deals']
+        fields = '__all__'
 
 
-class ResultSerializer(serializers.ModelSerializer):
+class DealSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ResultModel
+        model = DealModel
         fields = ('username', 'spent_money', 'gems')
