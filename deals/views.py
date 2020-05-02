@@ -32,6 +32,6 @@ class DealView(generics.ListAPIView):
     def get(self, *args):
         data = DealModel.sample()
         if DealModel.objects.all():
-            return Response(data)
+            return Response({'response': data})
         else:
             return Response({'Status': f'Error, Desc: Ошибонька'})
